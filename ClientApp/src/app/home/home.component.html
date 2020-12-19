@@ -1,0 +1,68 @@
+<div class="title-container">
+    <h1>BINGO GAMES</h1>
+    <div class="mutate-container" id="mutate">
+      <button href="#" class="btn btn-new" *ngIf="!showForm" (click)="newGame()">✚ NEW GAME</button>
+    <div class="game-container" *ngIf="showForm">
+      <label for="name">Name:
+        <input class="form-control" type="text" [(ngModel)]="game.name">
+      </label>
+      <label for="name">Start Time:
+        <input class="form-control" type="date" [ngModel]='game.startTime | date:"yyyy-MM-dd" ' (ngModelChange)='game.startTime=$event'>
+      </label>
+      <button class="btn btn-cancel m-0 mr-2" (click)="refresh()">✖ CANCEL</button>
+      <button class="btn btn-main m-0" (click)="save()" *ngIf="game.name">✔ SAVE</button>
+    </div>
+    </div>
+    
+
+</div>
+
+<div *ngIf="games" class="games-container">
+    <div class="card" *ngFor="let g of games">
+        <div class="card-body">
+            <label for="id" class="label-id">{{g.id}}</label>
+            <p class="game-name">{{g.name}}</p>
+                <label for="date" class="label-info">⏰:
+                    <input class="game-info" type="text" value="{{g.startTime}}" disabled>
+                 </label>
+                 <label for="link" class="label-info">🔗:
+                    <input class="game-info" type="text" style="color: indigo; font-weight: bold;" value="{{g.link}}" disabled>
+                 </label>
+                 <label for="count" class="label-info"> 👥:
+                    <input class="game-info" type="text" value="{{g.playersNumber}}" disabled>
+                 </label>
+                 <label for="status" class="label-info">🔌:
+                    <input class="game-info" type="text" *ngIf="g.finished" value="FINISHED" disabled>
+                    <input class="game-info" type="text" *ngIf="!g.finished" value="PLAYING" disabled>
+                 </label>
+
+          <button class="btn btn-main" *ngIf="!g.finished" (click)="getRandomBall(g)">✪ GET BALL</button>
+          <a class="btn btn-edit" href="#mutate" (click)="edit(g)">✎</a>
+          <button class="btn btn-delete" *ngIf="!(game.confirmation && game.id==g.id)" (click)="confirmDelete(g)">▬</button>
+          <button *ngIf="game.confirmation && game.id==g.id" class="btn btn-no" (click)="game['confirmation'] = false">✖</button>
+          <button *ngIf="game.confirmation && game.id==g.id" class="btn btn-yes" (click)="delete(g)">✔</button>
+          <hr>
+          <div>
+              <div class="numbers" *ngFor="let num of all_nums">
+                <p class="normal" *ngIf="!isGetted(g.gettedNumbers,num) && !isBiggerThan9(num)">0{{num}}</p>
+                <p class="selected" *ngIf="isGetted(g.gettedNumbers,num) && !isBiggerThan9(num)">0{{num}}</p>
+                <p class="normal" *ngIf="!isGetted(g.gettedNumbers,num) && isBiggerThan9(num)">{{num}}</p>
+                <p class="selected" *ngIf="isGetted(g.gettedNumbers,num) && isBiggerThan9(num)">{{num}}</p>
+              </div>
+
+          </div>
+        </div>
+      </div>
+
+</div>
+<div class="ball-notifier" *ngIf="showBall">
+    <div class="flaying">
+        <p class="ball" *ngIf="isBiggerThan9(ball)">{{ball}}</p>
+        <p class="ball"*ngIf="!isBiggerThan9(ball)">0{{ball}}</p>
+        <button href="#" class="btn btn-main" (click)="showBall=false">CONTINUE</button>
+    </div>
+
+</div>
+<div style="height: 200px;">
+
+</div>

@@ -1,0 +1,24 @@
+<header>
+    <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light box-shadow mb-3">
+        <div class="container">
+            <a class="navbar-brand" [routerLink]="['/']">Bingo</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-label="Toggle navigation" [attr.aria-expanded]="isExpanded" (click)="toggle()">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+            <div id="navbar" class="navbar-collapse collapse d-sm-inline-flex flex-sm-row-reverse" [ngClass]="{ show: isExpanded }">
+                <ul class="navbar-nav flex-grow">
+                    <li class="nav-item" *ngIf="logged_in" style="display: flex; justify-content: center;">
+                            <a class="nav-link text-dark" style="display: flex; justify-content: center;">
+                                <img src="/assets/images/UserIcon512.png" alt="" style="width: 20px; height: 20px; margin-right: 10px;" >
+                                {{user.name}}
+                            </a>
+                        <button class="btn btn-logout" (click)="logout()">LOGOUT</button>
+                    </li>
+                    <li class="nav-item" *ngIf="!logged_in" [routerLinkActive]="['link-active']" [routerLinkActiveOptions]="{ exact: true } ">
+                        <a class="nav-link text-dark" [routerLink]="['/login']">Login</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+</header>

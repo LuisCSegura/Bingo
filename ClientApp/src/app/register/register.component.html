@@ -1,0 +1,16 @@
+<div class="container">
+    <h1>REGISTER</h1>
+    <label for="name">Name
+        <input id="name" type="text" class="form-control" [(ngModel)]="usr.name" required>
+    </label><br>
+    <label for="email">Email
+        <input id="email" type="text" class="form-control" [(ngModel)]="usr.email" required>
+    </label><br>
+    <label for="pass">Password
+        <input id="pass" type="password" class="form-control" [(ngModel)]="usr.password" required>
+    </label><br>
+    <label for="repass">Confirm Password
+        <input id="repass" type="password" class="form-control" [(ngModel)]="repass" required>
+    </label><br>
+    <button class="btn btn-info m-2" (click)="register()">SIGN UP</button>
+</div>

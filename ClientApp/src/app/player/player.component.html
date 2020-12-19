@@ -1,0 +1,57 @@
+<div *ngIf="joined">
+    <div class="counter-container" *ngIf="showCounterForm">
+        <div class="neu-circle">
+            <div class="counter">
+                <label>NUMBER OF CARDS
+                    <input class="form-control nud" type="number" min="1" max="24" [(ngModel)]="counter">
+                </label>
+                <br>
+                <button class="btn btn-main" (click)="createCards()">CONTINUE</button>
+            </div>
+
+        </div>
+    </div>
+    <div class="title-container" *ngIf="!showCounterForm">
+      <h1>BINGO CARDS</h1>
+      <div class="mutate-container">
+          <h2>{{game.name}}</h2>
+      </div>
+
+    </div>
+    <div class="cards-container" *ngIf="!showCounterForm">
+
+        <div class="card" *ngFor="let card of cards">
+            <div class="card-body">
+                <label for="id" class="label-info" style="font-size: 10px;">{{card.id}}</label>
+                <hr>
+                <div>
+                    <div class="numbers" *ngFor="let num of card.numbers">
+                      <p class="normal" *ngIf="!isGetted(num) && !isBiggerThan9(num)">0{{num}}</p>
+                      <p class="selected" *ngIf="isGetted(num) && !isBiggerThan9(num)">0{{num}}</p>
+                      <p class="normal" *ngIf="!isGetted(num) && isBiggerThan9(num)">{{num}}</p>
+                      <p class="selected" *ngIf="isGetted(num) && isBiggerThan9(num)">{{num}}</p>
+                    </div>
+
+                </div>
+            </div>
+          </div>
+    </div>
+    <div style="height: 200px;">
+
+    </div>
+</div>
+
+<div class="ball-notifier" *ngIf="game.finished">
+    <div class="flaying">
+        <p class="ball" *ngIf="iWin">😀 YOU WIN!</p>
+        <p class="ball" *ngIf="!iWin">😦 YOU LOSE</p>
+    </div>
+
+</div>
+
+<div *ngIf="!joined" style="height: 80vh; display: flex; justify-content: center; align-items: center;" >
+    <h3>The link does not belong to any active game right now, please check it.</h3>
+</div>
+
+
+

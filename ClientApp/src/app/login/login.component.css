@@ -1,0 +1,50 @@
+.container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 500px;
+}
+.login{
+    width: 400px;
+    text-align: center;
+    padding: none;
+    margin: none;
+}
+h1{
+    color: indigo;
+    font-weight: bold;
+    letter-spacing: 10px;
+}
+label{
+    width: 100%;
+    padding: none;
+    margin: none;
+    text-align: left;
+}
+.form-control{
+    margin-top: 20px;
+    width: 100%;
+    border: none;
+    background: #dde1e7;
+    border-radius: 15px;
+    box-shadow: -3px -3px 7px rgba(255, 255, 255, 0.5), 3px 3px 5px rgba(94, 104, 121, 0.3);
+}
+button{
+    width: 100%;
+    padding: none;
+    margin: none;
+}
+.btn{
+    border-radius: 50px;
+    color: white;
+    font-weight: bold;
+    font-size: 20px;
+    margin: 20px 5px 10px 0px;
+    box-shadow:  3px 3px 5px rgba(74, 84, 101, 0.3);
+}
+.btn-main{
+    background-color: indigo;
+}
+.btn-main:hover{
+    background-color: #6B20a2;
+}
